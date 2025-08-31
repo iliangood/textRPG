@@ -1,0 +1,2 @@
+/usr/bin/ar qc libinventory.a CMakeFiles/inventory.dir/src/inventory.cpp.o
+/usr/bin/ranlib libinventory.a
