@@ -1,6 +1,15 @@
 cmake_minimum_required(VERSION 3.28.3)
 project(textRPG)
-set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -g -O0")
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+if(MSVC)
+    add_compile_options(/W4 /WX)
+else()
+    add_compile_options(-Wall -Wextra -g -O0)
+endif()
+
 include_directories(include)
 
 add_library(player ./src/player.cpp ./include/player.h)
