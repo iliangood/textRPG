@@ -1,40 +1,46 @@
 #include "inventoryCell.h"
 
-	string InventoryCell::getName() const
-	{
-		return item.getName();
-	}
+InventoryCell::InventoryCell(Item item, int count)
+{
+	this->item = item;
+	this->count = count;
+}
 
-	string InventoryCell::getDescription() const
-	{
-		return item.getDescription();
-	}
+string InventoryCell::getName() const
+{
+	return item.getName();
+}
 
-	Item InventoryCell::getItem() const
-	{
-		return item;
-	}
+string InventoryCell::getDescription() const
+{
+	return item.getDescription();
+}
 
-	int InventoryCell::getCount() const
-	{
-		return count;
-	}
+Item InventoryCell::getItem() const
+{
+	return item;
+}
 
-	bool InventoryCell::isEmpty() const
-	{
-		return !count;
-	}
+int InventoryCell::getCount() const
+{
+	return count;
+}
 
-	int InventoryCell::push(int Count)
-	{
+bool InventoryCell::isEmpty() const
+{
+	return !count;
+}
+
+int InventoryCell::push(int Count)
+{
 		count += Count;
 		return 0;
-	}
+}
 
-	int InventoryCell::pull(int Count)
-	{
+int InventoryCell::pull(int Count)
+{
 		if(count < Count)
 			return 1;
 		count -= count;
 		return 0;
-	}
+}
