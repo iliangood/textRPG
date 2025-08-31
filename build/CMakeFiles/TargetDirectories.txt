@@ -1,9 +1,0 @@
-/home/iliangood/code/games/textRPG/build/CMakeFiles/player.dir
-/home/iliangood/code/games/textRPG/build/CMakeFiles/room.dir
-/home/iliangood/code/games/textRPG/build/CMakeFiles/passage.dir
-/home/iliangood/code/games/textRPG/build/CMakeFiles/item.dir
-/home/iliangood/code/games/textRPG/build/CMakeFiles/inventoryCell.dir
-/home/iliangood/code/games/textRPG/build/CMakeFiles/inventory.dir
-/home/iliangood/code/games/textRPG/build/CMakeFiles/game.dir
-/home/iliangood/code/games/textRPG/build/CMakeFiles/edit_cache.dir
-/home/iliangood/code/games/textRPG/build/CMakeFiles/rebuild_cache.dir

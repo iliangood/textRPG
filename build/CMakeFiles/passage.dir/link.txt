@@ -1,2 +1,0 @@
-/usr/bin/ar qc libpassage.a CMakeFiles/passage.dir/src/passage.cpp.o
-/usr/bin/ranlib libpassage.a
