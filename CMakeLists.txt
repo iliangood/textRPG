@@ -26,4 +26,6 @@ target_link_libraries(inventoryCell PUBLIC item)
 add_library(inventory ./src/inventory.cpp ./include/inventory.h)
 target_link_libraries(inventory PUBLIC inventoryCell)
 
+add_library(condition ./src/condition.cpp ./include/condition.h)
+
 add_executable(game main.cpp)

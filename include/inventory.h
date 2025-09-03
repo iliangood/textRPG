@@ -5,6 +5,8 @@
 #include <vector>
 #include <string>
 
+#include "statusCodes.h"
+
 #include "inventoryCell.h"
 
 using namespace std;
@@ -34,6 +36,8 @@ public:
 	int findIndex(string name) const; //Поиск индекса предмета по имени предмета, если предмета еще нет в инвенторе то возвращает -1
 
 	int push(string name, int count); //Положить предмет(ы) в инвентарь, всегда возвращает 0
+
+	int uniquePush(string name); //Положить предмет если его не существует, при успехе возвращает 0, если предмет уже есть то возвращает -1
 
 	int pull(string name, int count); //Достать предметы из инвентаря, возвращает 0 при успехе, 1 если недостаточно предметов
 };

@@ -66,30 +66,48 @@ int Inventory::findIndex(string name) const
 			return i;
 		}
 	}
-	return -1;
+	return NOT_EXISTS;
 }
 
 int Inventory::push(string name, int count)
 {
+	if(count < 0)
+	{
+		return INCORRECT_INPUT;
+	}
 	int index = findIndex(name);
 	if(index >= 0)
 	{
 		inventoryCells[index].push(count);
 	}
 	inventoryCells.push_back(InventoryCell());
-	return 0;
+	return OK;
+}
+
+int Inventory::uniquePush(string name)
+{
+	if(findIndex(name) == -1)
+	{
+		push(name, 1);
+		return OK;
+	}
+	return GAME_LOGIC_ERROR;
 }
 
 int Inventory::pull(string name, int count)
 {
+	if(count < 0)
+	{
+		return INCORRECT_INPUT;
+	}
 	int index = findIndex(name);
 	if(index < 0)
 	{
-		return -1;
+		return GAME_LOGIC_ERROR;
 	}
 	if(getCount(index) < count)
 	{
-		return -1;
+		return GAME_LOGIC_ERROR;
 	}
 	return inventoryCells[index].pull(count);
 }

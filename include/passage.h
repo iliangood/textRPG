@@ -1,6 +1,10 @@
 #if !defined PASSAGE_H
 #define PASSAGE_H
+
+#include "statusCodes.h"
+
 #include "room.h"
+
 class Passage
 {
 	Room* target;

@@ -3,6 +3,8 @@
 
 #include <string>
 
+#include "statusCodes.h"
+
 using namespace std;
 
 class Item

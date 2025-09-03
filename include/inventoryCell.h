@@ -3,6 +3,8 @@
 
 #include <string>
 
+#include "statusCodes.h"
+
 #include "item.h"
 
 using namespace std;

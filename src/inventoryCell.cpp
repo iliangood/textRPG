@@ -34,13 +34,13 @@ bool InventoryCell::isEmpty() const
 int InventoryCell::push(int Count)
 {
 		count += Count;
-		return 0;
+		return OK;
 }
 
 int InventoryCell::pull(int Count)
 {
 		if(count < Count)
-			return 1;
+			return GAME_LOGIC_ERROR;
 		count -= count;
-		return 0;
+		return OK;
 }
