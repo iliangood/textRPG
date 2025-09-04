@@ -33,14 +33,26 @@ bool InventoryCell::isEmpty() const
 
 int InventoryCell::push(int Count)
 {
-		count += Count;
-		return OK;
+	if(getName().empty)
+		return GAME_LOGIC_ERROR;
+	count += Count;
+	return OK;
+}
+
+int InventoryCell::push(string name, int Count)
+{
+	if(getName().empty)
+	{
+		item = Item();
+	}
+	count += Count;
+	return OK;
 }
 
 int InventoryCell::pull(int Count)
 {
-		if(count < Count)
-			return GAME_LOGIC_ERROR;
-		count -= count;
-		return OK;
+	if(count < Count)
+		return GAME_LOGIC_ERROR;
+	count -= count;
+	return OK;
 }

@@ -15,6 +15,8 @@ class Inventory
 {
 	vector<InventoryCell> inventoryCells;
 public:
+	Inventory(){}
+
 	string getName(int index) const; //Получить имя предмета(ов) в определенной ячеке инвентаря
 
 	vector<string> getNames() const; //Получить имена всех предметов в инвентаре
@@ -33,12 +35,12 @@ public:
 
 	bool isEmpty() const; //Проверит пустой ли инвентарь
 
-	int findIndex(string name) const; //Поиск индекса предмета по имени предмета, если предмета еще нет в инвенторе то возвращает -1
+	int findIndex(string name) const; //Поиск индекса предмета по имени предмета
 
-	int push(string name, int count); //Положить предмет(ы) в инвентарь, всегда возвращает 0
+	int push(string name, int count); //Положить предмет(ы) в инвентарь
 
-	int uniquePush(string name); //Положить предмет если его не существует, при успехе возвращает 0, если предмет уже есть то возвращает -1
+	int uniquePush(string name); //Положить предмет если его не существует
 
-	int pull(string name, int count); //Достать предметы из инвентаря, возвращает 0 при успехе, 1 если недостаточно предметов
+	int pull(string name, int count); //Достать предметы из инвентаря
 };
 #endif

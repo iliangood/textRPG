@@ -1,6 +1,7 @@
 #if !defined CONDITTION_H
 #define CONDITTION_H
 
+
 #include <string>
 
 #include "statusCodes.h"
@@ -11,10 +12,10 @@ using namespace std;
 
 class Condition
 {
-    string itemName;
-    unsigned int requiredQuantity;
-    bool requiredMin;
-    Inventory inventory;
+	bool (*checkFunc)(void* data);
 public:
+	Condition((*CheckFunc)(void* data));
+	bool check(void* data);
+	bool check();
 };
 #endif

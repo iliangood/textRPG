@@ -76,9 +76,10 @@ int Inventory::push(string name, int count)
 		return INCORRECT_INPUT;
 	}
 	int index = findIndex(name);
-	if(index >= 0)
+	if(index != NOT_EXISTS)
 	{
-		inventoryCells[index].push(count);
+		inventoryCells[index].push(name, count);
+		return OK;
 	}
 	inventoryCells.push_back(InventoryCell());
 	return OK;
@@ -86,7 +87,7 @@ int Inventory::push(string name, int count)
 
 int Inventory::uniquePush(string name)
 {
-	if(findIndex(name) == -1)
+	if(findIndex(name) == NOT_EXISTS)
 	{
 		push(name, 1);
 		return OK;

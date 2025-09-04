@@ -27,7 +27,9 @@ public:
 
 	bool isEmpty() const; //Проверить ячейку на то, что она пуста
 
-	int push(int count); //Положить count предметов в ячейку
+	int push(int count); //Положить count предметов в ячейку, невозможно когда нет предмета в ячейке
+
+	int push(string name, int count); //Положить count предметов с именем в ячейку
 
 	int pull(int count); //Взять count предметов из ячейки
 };
