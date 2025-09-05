@@ -9,17 +9,20 @@
 
 using namespace std;
 
-class Item
+class ItemType
 {
 	string name;
 	string description;
 	vector<Property> properties;
 public:
-	Item(){}
-	Item(string name, string description);
+	ItemType(string name, string description, vector<Property> properties);
 
 	string getDescription() const; //Получить описание предмета
 
 	string getName() const; //Получить имя предмета
+
+	vector<Property> getProperties();
+
+	Property getProperty(int index);
 };
 #endif

@@ -1,13 +1,30 @@
 #include "inventory.h"
 
+bool isExistence(ItemType item);
+
+vector<ItemStack> Inventory::getItemStacks() const
+{
+	return itemStacks;
+}
+
+ItemStack Inventory::getItemStack(int index) const
+{
+	return itemStacks[index];
+}
+
+ItemType* Inventory::getItemType(int index) const
+{
+	return getItemStack(index).getItem();
+}
+
 string Inventory::getName(int index) const
 {
-	return inventoryCells[index].getName();
+	return getItemStack(index).getName();
 }
 
 string Inventory::getDescription(int index) const
 {
-	return inventoryCells[index].getDescription();
+	return getItemStack(index).getDescription();
 }
 
 vector<string> Inventory::getNames() const
@@ -17,51 +34,42 @@ vector<string> Inventory::getNames() const
 	res.resize(size);
 	for(int i = 0; i < size; i++)
 	{
-		res[i] = inventoryCells[i].getName();
+		res[i] = itemStacks[i].getName();
 	}
 	return res;
 }
 
-vector<InventoryCell> Inventory::getInventoryCells() const
-{
-	return inventoryCells;
-}
-
-InventoryCell Inventory::getInventoryCell(int index) const
-{
-	return inventoryCells[index];
-}
 
 int Inventory::getCount() const
 {
-	return inventoryCells.size();
+	return itemStacks.size();
 }
 
 int Inventory::getTotalCount() const
 {
 	int res = 0;
-	for(size_t i = 0; i < inventoryCells.size(); i++)
+	for(size_t i = 0; i < itemStacks.size(); i++)
 	{
-		res += inventoryCells[i].getCount();
+		res += itemStacks[i].getCount();
 	}
 	return res;
 }
 
 int Inventory::getCount(int index) const
 {
-	return inventoryCells[index].getCount();
+	return itemStacks[index].getCount();
 }
 
 bool Inventory::isEmpty() const
 {
-	return inventoryCells.size();
+	return itemStacks.size();
 }
 
-int Inventory::findIndex(string name) const
+int Inventory::findIndex(ItemType* item) const
 {
 	for(int i = 0; i < getCount(); i++)
 	{
-		if(inventoryCells[i].getName() == name)
+		if(getItemType(i) == item)
 		{
 			return i;
 		}
@@ -69,25 +77,37 @@ int Inventory::findIndex(string name) const
 	return NOT_EXISTS;
 }
 
-int Inventory::push(string name, int count)
+int Inventory::findIndex(string name) const
+{
+	for(int i = 0; i < getCount(); i++)
+	{
+		if(getName(i) == name)
+		{
+			return i;
+		}
+	}
+	return NOT_EXISTS;
+}
+
+int Inventory::push(ItemType* item, int count)
 {
 	if(count < 0)
 	{
 		return INCORRECT_INPUT;
 	}
-	int index = findIndex(name);
+	int index = findIndex(item);
 	if(index != NOT_EXISTS)
 	{
-		inventoryCells[index].push(name, count);
+		getItemStack(index).push(name, count);
 		return OK;
 	}
-	inventoryCells.push_back(InventoryCell());
+	itemStacks.push_back(ItemType(item, count));
 	return OK;
 }
 
-int Inventory::uniquePush(string name)
+int Inventory::uniquePush(ItemType* item)
 {
-	if(findIndex(name) == NOT_EXISTS)
+	if(findIndex(item) == NOT_EXISTS)
 	{
 		push(name, 1);
 		return OK;
@@ -95,13 +115,13 @@ int Inventory::uniquePush(string name)
 	return GAME_LOGIC_ERROR;
 }
 
-int Inventory::pull(string name, int count)
+int Inventory::pull(ItemType* item, int count)
 {
 	if(count < 0)
 	{
 		return INCORRECT_INPUT;
 	}
-	int index = findIndex(name);
+	int index = findIndex(item);
 	if(index < 0)
 	{
 		return GAME_LOGIC_ERROR;
@@ -110,5 +130,5 @@ int Inventory::pull(string name, int count)
 	{
 		return GAME_LOGIC_ERROR;
 	}
-	return inventoryCells[index].pull(count);
+	return getItemStack.pull(count);
 }

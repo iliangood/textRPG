@@ -18,13 +18,13 @@ add_library(room ./src/room.cpp ./include/room.h)
 
 add_library(passage ./src/passage.cpp ./include/passage.h)
 
-add_library(item ./src/item.cpp ./include/item.h)
+add_library(itemType ./src/itemType.cpp ./include/itemType.h)
 
-add_library(inventoryCell ./src/inventoryCell.cpp ./include/inventoryCell.h)
-target_link_libraries(inventoryCell PUBLIC item)
+add_library(itemStack ./src/itemStack.cpp ./include/itemStack.h)
+target_link_libraries(itemStack PUBLIC itemType)
 
 add_library(inventory ./src/inventory.cpp ./include/inventory.h)
-target_link_libraries(inventory PUBLIC inventoryCell)
+target_link_libraries(inventory PUBLIC itemStack)
 
 add_library(condition ./src/condition.cpp ./include/condition.h)
 
