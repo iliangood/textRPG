@@ -14,8 +14,9 @@ class Condition
 {
 	bool (*checkFunc)(void* data);
 public:
-	Condition((*CheckFunc)(void* data));
-	bool check(void* data);
-	bool check();
+	Condition(){}
+	Condition(bool (*CheckFunc)(void* data));
+	bool check(void* arg) const;
+	bool check() const;
 };
 #endif

@@ -14,9 +14,12 @@ include_directories(include)
 
 add_library(player ./src/player.cpp ./include/player.h)
 
-add_library(room ./src/room.cpp ./include/room.h)
+add_library(map ./src/room.cpp ./include/room.h)
 
 add_library(passage ./src/passage.cpp ./include/passage.h)
+
+target_link_libraries(passage PUBLIC room)
+target_link_libraries(room PUBLIC passage)
 
 add_library(itemType ./src/itemType.cpp ./include/itemType.h)
 
@@ -28,6 +31,6 @@ target_link_libraries(inventory PUBLIC itemStack)
 
 add_library(condition ./src/condition.cpp ./include/condition.h)
 
-add_library(property ./src/property.cpp ./include/property.h)
+add_library(constantProperty ./src/constantProperty.cpp ./include/constantProperty.h)
 
 add_executable(game main.cpp)

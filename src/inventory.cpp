@@ -98,10 +98,10 @@ int Inventory::push(ItemType* item, int count)
 	int index = findIndex(item);
 	if(index != NOT_EXISTS)
 	{
-		getItemStack(index).push(name, count);
+		getItemStack(index).push(item, count);
 		return OK;
 	}
-	itemStacks.push_back(ItemType(item, count));
+	itemStacks.push_back(ItemStack(item, count));
 	return OK;
 }
 
@@ -109,7 +109,7 @@ int Inventory::uniquePush(ItemType* item)
 {
 	if(findIndex(item) == NOT_EXISTS)
 	{
-		push(name, 1);
+		push(item, 1);
 		return OK;
 	}
 	return GAME_LOGIC_ERROR;
@@ -130,5 +130,5 @@ int Inventory::pull(ItemType* item, int count)
 	{
 		return GAME_LOGIC_ERROR;
 	}
-	return getItemStack.pull(count);
+	return getItemStack(index).pull(count);
 }

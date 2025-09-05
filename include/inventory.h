@@ -17,15 +17,13 @@ class Inventory
 public:
 	Inventory(){}
 
-	vector<ItemStack> getItemStacks() const;
+	vector<ItemStack> getItemStacks() const; //Получить все ячейки инвентаря
 
 	bool isExistence(ItemType item);
 
 	string getName(int index) const; //Получить имя предмета(ов) в определенной ячеке инвентаря
 
 	vector<string> getNames() const; //Получить имена всех предметов в инвентаре
-
-	vector<ItemStack> getItemStack() const; //Получить все ячейки инвентаря
 
 	string getDescription(int index) const; //Получить описание предмета(ов) в определенной ячейке инвентаря
 

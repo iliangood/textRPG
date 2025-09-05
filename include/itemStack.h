@@ -1,5 +1,5 @@
-#if !defined INVENTORYCELL_H
-#define INVENTORYCELL_H
+#if !defined ITEM_STACK_H
+#define ITEM_STACK_H
 
 #include <string>
 

@@ -1,14 +1,14 @@
-#if !defined PROPERTY_H
-#define PROPERTY_H
+#if !defined CONSTANT_PROPERTY_H
+#define CONSTANT_PROPERTY_H
 
 #include <string>
 
 using namespace std;
 
-class Property
+class ConstantProperty
 {
 	string name;
-	string desctription;
+	string description;
 	bool hidden;
 public:
 	string getName();

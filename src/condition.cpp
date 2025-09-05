@@ -1,11 +1,16 @@
 #include "condition.h"
 
-bool Condition::check(void* data)
+Condition::Condition(bool (*checkFunc)(void* data))
+{
+	this->checkFunc = checkFunc;
+}
+
+bool Condition::check(void* arg) const
 {
 	return checkFunc(data);
 }
 
-bool Condition::check()
+bool Condition::check() const
 {
 	return checkFunc(nullptr);
 }
