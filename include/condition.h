@@ -8,8 +8,6 @@
 
 #include "inventory.h"
 
-using namespace std;
-
 class Condition
 {
 	bool (*checkFunc)(void* data);

@@ -7,7 +7,7 @@ Condition::Condition(bool (*checkFunc)(void* data))
 
 bool Condition::check(void* arg) const
 {
-	return checkFunc(data);
+	return checkFunc(arg);
 }
 
 bool Condition::check() const

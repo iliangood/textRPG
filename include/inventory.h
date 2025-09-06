@@ -9,23 +9,22 @@
 
 #include "itemStack.h"
 
-using namespace std;
 
 class Inventory
 {
-	vector<ItemStack> itemStacks;
+	std::vector<ItemStack> itemStacks;
 public:
 	Inventory(){}
 
-	vector<ItemStack> getItemStacks() const; //Получить все ячейки инвентаря
+	std::vector<ItemStack> getItemStacks() const; //Получить все ячейки инвентаря
 
 	bool isExistence(ItemType item);
 
-	string getName(int index) const; //Получить имя предмета(ов) в определенной ячеке инвентаря
+	std::string getName(int index) const; //Получить имя предмета(ов) в определенной ячеке инвентаря
 
-	vector<string> getNames() const; //Получить имена всех предметов в инвентаре
+	std::vector<std::string> getNames() const; //Получить имена всех предметов в инвентаре
 
-	string getDescription(int index) const; //Получить описание предмета(ов) в определенной ячейке инвентаря
+	std::string getDescription(int index) const; //Получить описание предмета(ов) в определенной ячейке инвентаря
 
 	ItemStack getItemStack(int index) const; //Получить определенную ячейку инвентаря
 
@@ -41,7 +40,7 @@ public:
 
 	int findIndex(ItemType* item) const; //Поиск индекса предмета по предмету
 
-	int findIndex(string name) const; //Поиск индекса предмета по имени предмета
+	int findIndex(std::string name) const; //Поиск индекса предмета по имени предмета
 
 	int push(ItemType* item, int count); //Положить предмет(ы) в инвентарь
 

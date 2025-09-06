@@ -6,12 +6,12 @@ ItemStack::ItemStack(ItemType *item, int count)
 	this->count = count;
 }
 
-string ItemStack::getName() const
+std::string ItemStack::getName() const
 {
 	return item->getName();
 }
 
-string ItemStack::getDescription() const
+std::string ItemStack::getDescription() const
 {
 	return item->getDescription();
 }

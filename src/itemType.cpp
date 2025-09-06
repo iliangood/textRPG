@@ -1,6 +1,6 @@
 #include "itemType.h"
 
-ItemType::ItemType(string name, string description, vector<ConstantProperty*> properties, bool uniqueItem)
+ItemType::ItemType(std::string name, std::string description, std::vector<ConstantProperty*> properties, bool uniqueItem)
 {
 	this->name = name;
 	this->description = description;
@@ -8,17 +8,17 @@ ItemType::ItemType(string name, string description, vector<ConstantProperty*> pr
 	this->uniqueItem = uniqueItem;
 }
 
-string ItemType::getDescription() const
+std::string ItemType::getDescription() const
 {
 	return description;
 }
 
-string ItemType::getName() const
+std::string ItemType::getName() const
 {
 	return name;
 }
 
-vector<ConstantProperty*> ItemType::getConstantProperties() const
+std::vector<ConstantProperty*> ItemType::getConstantProperties() const
 {
 	return properties;
 }

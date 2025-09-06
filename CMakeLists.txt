@@ -14,7 +14,7 @@ include_directories(include)
 
 add_library(player ./src/player.cpp ./include/player.h)
 
-add_library(map ./src/room.cpp ./include/room.h)
+add_library(room ./src/room.cpp ./include/room.h)
 
 add_library(passage ./src/passage.cpp ./include/passage.h)
 

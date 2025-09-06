@@ -1,0 +1,4 @@
+#if !defined DINAMIC_PROPERTY_TYPE_H
+#define DINAMIC_PROPERTY_TYPE_H
+
+#endif

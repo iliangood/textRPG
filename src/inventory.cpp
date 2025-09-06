@@ -2,7 +2,7 @@
 
 bool isExistence(ItemType item);
 
-vector<ItemStack> Inventory::getItemStacks() const
+std::vector<ItemStack> Inventory::getItemStacks() const
 {
 	return itemStacks;
 }
@@ -17,19 +17,19 @@ ItemType* Inventory::getItemType(int index) const
 	return getItemStack(index).getItem();
 }
 
-string Inventory::getName(int index) const
+std::string Inventory::getName(int index) const
 {
 	return getItemStack(index).getName();
 }
 
-string Inventory::getDescription(int index) const
+std::string Inventory::getDescription(int index) const
 {
 	return getItemStack(index).getDescription();
 }
 
-vector<string> Inventory::getNames() const
+std::vector<std::string> Inventory::getNames() const
 {
-	vector<string> res;
+	std::vector<std::string> res;
 	int size = getCount();
 	res.resize(size);
 	for(int i = 0; i < size; i++)
@@ -77,7 +77,7 @@ int Inventory::findIndex(ItemType* item) const
 	return NOT_EXISTS;
 }
 
-int Inventory::findIndex(string name) const
+int Inventory::findIndex(std::string name) const
 {
 	for(int i = 0; i < getCount(); i++)
 	{

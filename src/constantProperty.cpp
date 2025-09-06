@@ -1,11 +1,11 @@
 #include "constantProperty.h"
 
-string ConstantProperty::getName()
+std::string ConstantProperty::getName()
 {
     return name;
 }
 
-string ConstantProperty::getDescription()
+std::string ConstantProperty::getDescription()
 {
     return description;
 }

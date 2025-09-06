@@ -7,22 +7,21 @@
 #include "statusCodes.h"
 #include "constantProperty.h"
 
-using namespace std;
 
 class ItemType
 {
-	string name;
-	string description;
-	vector<ConstantProperty*> properties;
+	std::string name;
+	std::string description;
+	std::vector<ConstantProperty*> properties;
 	bool uniqueItem; //Должен ли быть предмет уникальным
 public:
-	ItemType(string name, string description, vector<ConstantProperty*> properties, bool uniqueItem = false);
+	ItemType(std::string name, std::string description, std::vector<ConstantProperty*> properties, bool uniqueItem = false);
 
-	string getDescription() const; //Получить описание предмета
+	std::string getDescription() const; //Получить описание предмета
 
-	string getName() const; //Получить имя предмета
+	std::string getName() const; //Получить имя предмета
 
-	vector<ConstantProperty*> getConstantProperties() const; // Получить свойства предмета
+	std::vector<ConstantProperty*> getConstantProperties() const; // Получить свойства предмета
 
 	bool itemIsUnique() const; // Узнать должен ли предмет быть уникальным
 

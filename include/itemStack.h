@@ -7,7 +7,6 @@
 
 #include "itemType.h"
 
-using namespace std;
 
 class ItemStack
 {
@@ -17,9 +16,9 @@ public:
 	ItemStack(){}
 	ItemStack(ItemType *item, int count);
 
-	string getName() const; //Получить имя предмета в ячейке
+	std::string getName() const; //Получить имя предмета в ячейке
 
-	string getDescription() const; //Получить описание предмета в ячейке
+	std::string getDescription() const; //Получить описание предмета в ячейке
 
 	ItemType* getItem() const; //Получить объкт предмета
 

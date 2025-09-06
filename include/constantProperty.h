@@ -3,16 +3,15 @@
 
 #include <string>
 
-using namespace std;
 
 class ConstantProperty
 {
-	string name;
-	string description;
+	std::string name;
+	std::string description;
 	bool hidden;
 public:
-	string getName();
-	string getDescription();
+	std::string getName();
+	std::string getDescription();
 	bool getHidden();
 };
 #endif

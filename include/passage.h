@@ -5,6 +5,8 @@
 
 #include "statusCodes.h"
 
+class Room;
+
 #include "room.h"
 #include "condition.h"
 
