@@ -39,3 +39,5 @@ add_library(condition ./src/condition.cpp ./include/condition.h)
 add_library(constantProperty ./src/constantProperty.cpp ./include/constantProperty.h)
 
 add_executable(game main.cpp)
+
+target_link_libraries(game PUBLIC player room inventory itemType itemStack constantProperty dinamicProperty dinamicPropertyType condition)

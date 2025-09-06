@@ -17,11 +17,15 @@ class Passage
 	const Room* target;
 	string description;
 	const Condition* CheckVisibility;
+	const Condition* CheckAccessibility;
 public:
 	Passage(){}
 	Passage(const Room* target, string description, const Condition* CheckVisibility);
 	string getDescription() const;
 	bool checkVisibility() const;
 	bool checkVisibility(void* arg) const;
+	const Room* getTarget() const;
+	bool checkAccessibility() const;
+	bool checkAccessibility(void* arg) const;
 };
 #endif
