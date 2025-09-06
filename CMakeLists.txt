@@ -14,12 +14,17 @@ include_directories(include)
 
 add_library(player ./src/player.cpp ./include/player.h)
 
+add_library(roomObject ./src/roomObject.cpp ./include/roomObject.h)
+
 add_library(room ./src/room.cpp ./include/room.h)
 
 add_library(passage ./src/passage.cpp ./include/passage.h)
 
 target_link_libraries(passage PUBLIC room)
 target_link_libraries(room PUBLIC passage)
+
+add_library(dinamicPropertyType ./src/dinamicProperty/dinamicPropertyType.cpp ./include/dinamicProperty/dinamicPropertyType.h)
+add_library(dinamicProperty ./src/dinamicProperty/dinamicProperty.cpp ./include/dinamicProperty/dinamicProperty.h)
 
 add_library(itemType ./src/itemType.cpp ./include/itemType.h)
 
