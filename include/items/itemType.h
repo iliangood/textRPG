@@ -26,22 +26,34 @@ public:
 
 	std::string getName() const; //Получить имя предмета
 
-	std::vector<ConstantProperty*> getConstantProperties() const; // Получить свойства предмета
+	bool isUnique() const; // Узнать должен ли предмет быть уникальным
 
-	std::optional<std::vector<DinamicPropertyType*>> getDinamicProperties() const; // Получить динамические свойства предмета
+	std::vector<ConstantProperty*> getConstantProperties();// Получить свойства предмета
+
+	std::optional<std::vector<DinamicPropertyType*>> getDinamicProperties();// Получить динамические свойства предмета
+
+	std::optional<ConstantProperty*> getConstantProperty(size_t index); // Получить свойство предмета по индексу
+	std::optional<ConstantProperty*> getConstantProperty(std::optional<size_t> index);
+
+	std::optional<DinamicPropertyType*> getDinamicProperty(size_t index); // Получить динамическое свойство предмета по индексу
+	std::optional<DinamicPropertyType*> getDinamicProperty(std::optional<size_t> index);
 
 	int addConstantProperty(ConstantProperty* property); // Добавить свойство предмету
+	int addConstantProperty(std::optional<ConstantProperty*> property);
 
 	int removeConstantProperty(size_t index); // Убрать свойство предмета по индексу
+	int removeConstantProperty(std::optional<size_t> index);
 
 	int addDinamicProperty(DinamicPropertyType* property); // Добавить динамическое свойство предмету
+	int addDinamicProperty(std::optional<DinamicPropertyType*> property);
 
 	int removeDinamicProperty(size_t index); // Убрать динамическое свойство предмета по индексу
+	int removeDinamicProperty(std::optional<size_t> index);
 
-	bool itemIsUnique() const; // Узнать должен ли предмет быть уникальным
+	bool checkConstantProperty(ConstantProperty* property) const; // Проверить есть ли у предмета такое свойство
+	bool checkConstantProperty(std::optional<ConstantProperty*> property) const;
 
-	std::optional<ConstantProperty*> getConstantProperty(size_t index) const; // Получить свойство предмета по индексу
-
-	bool checkProperty(ConstantProperty* property) const; // Проверить есть ли у предмета свойство с таким именем
+	bool checkDinamicProperty(DinamicPropertyType* property) const; // Проверить есть ли у предмета такое динамическое свойство
+	bool checkDinamicProperty(std::optional<DinamicPropertyType*> property) const;
 };
 #endif
