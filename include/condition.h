@@ -6,7 +6,7 @@
 
 #include "statusCodes.h"
 
-#include "inventory.h"
+#include "items/inventory.h"
 
 class Condition
 {

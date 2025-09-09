@@ -1,10 +1,11 @@
 #include "roomObject.h"
 
+
+
 roomObject::roomObject(std::string name, std::string description,
 	std::vector<dinamicProperty> dinamicProperties,
 	std::vector<ConstantProperty> constantProperties,
 	Condition* visibilityCondition,
-	Condition* interactionCondition,
 	void (*interactionFunc)(void* data))
 	: name(std::move(name)), description(std::move(description)),
 	dinamicProperties(std::move(dinamicProperties)),

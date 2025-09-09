@@ -22,7 +22,6 @@ public:
 		std::vector<dinamicProperty> dinamicProperties = {},
 		std::vector<ConstantProperty> constantProperties = {},
 		Condition* visibilityCondition = nullptr,
-		Condition* interactionCondition = nullptr,
 		void (*interactionFunc)(void* data) = nullptr);
 	std::string getName() const;
 	std::string getDescription() const;

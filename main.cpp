@@ -12,26 +12,26 @@
 
 using namespace std;
 
-class Game {
+/*class Game {
 private:
-    Player player;
-    vector<Room> rooms;
+	Player player;
+	vector<Room> rooms;
 
 public:
-    Game() : player("Player", "Главный герой", nullptr) {
-        // Инициализируем первую тестовую комнату
-        rooms.push_back(Room("Тестовая комната", "Это простая тестовая комната."));
-        player.setPosition(&rooms[0]);
-    }
+	Game() : player("Player", "Главный герой", nullptr) {
+		// Инициализируем первую тестовую комнату
+		rooms.push_back(Room("Тестовая комната", "Это простая тестовая комната."));
+		player.setPosition(&rooms[0]);
+	}
 
-    void run() {
-        cout << "Текущая комната: " << player.getPosition()->getName() << endl;
-        cout << "Описание: " << player.getPosition()->getDescription() << endl;
-    }
-};
+	void run() {
+		cout << "Текущая комната: " << player.getPosition()->getName() << endl;
+		cout << "Описание: " << player.getPosition()->getDescription() << endl;
+	}
+};*/
 
 int main() {
-    Game game;
-    game.run();
-    return 0;
+	/*Game game;
+	game.run();*/
+	return 0;
 }

@@ -1,4 +1,4 @@
-#include "itemStack.h"
+#include "items/itemStack.h"
 
 ItemStack::ItemStack(ItemType *item, int count)
 {
@@ -31,15 +31,14 @@ bool ItemStack::isEmpty() const
 	return !count;
 }
 
-int ItemStack::push(int Count)
+int ItemStack::push(size_t Count)
 {
-	if(Count < 0)
-		return INCORRECT_INPUT;
 	count += Count;
 	return OK;
 }
 
-int ItemStack::push(ItemType *item, int Count)
+
+int ItemStack::push(ItemType* item, size_t Count)
 {
 	if(this->item != item)
 	{
@@ -48,7 +47,7 @@ int ItemStack::push(ItemType *item, int Count)
 	return push(Count);
 }
 
-int ItemStack::pull(int Count)
+int ItemStack::pull(size_t Count)
 {
 	if(count < Count)
 		return GAME_LOGIC_ERROR;
@@ -56,7 +55,7 @@ int ItemStack::pull(int Count)
 	return OK;
 }
 
-int ItemStack::pull(ItemType *item, int Count)
+int ItemStack::pull(ItemType* item, size_t Count)
 {
 	if(this->item != item)
 	{

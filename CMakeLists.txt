@@ -12,7 +12,19 @@ endif()
 
 include_directories(include)
 
-add_library(player ./src/player.cpp ./include/player.h)
+add_library(language ./src/language/language.cpp ./include/language/language.h)
+add_library(localizedString ./src/language/localizedString.cpp ./include/language/localizedString.h)
+target_link_libraries(localizedString PUBLIC language)
+add_library(multiLocalizedString ./src/language/multiLocalizedString.cpp ./include/language/multiLocalizedString.h)
+target_link_libraries(multiLocalizedString PUBLIC localizedString)
+
+add_library(itemType ./src/items/itemType.cpp ./include/items/itemType.h)
+
+add_library(itemStack ./src/items/itemStack.cpp ./include/items/itemStack.h)
+target_link_libraries(itemStack PUBLIC itemType)
+
+add_library(inventory ./src/items/inventory.cpp ./include/items/inventory.h)
+target_link_libraries(inventory PUBLIC itemStack)
 
 add_library(roomObject ./src/roomObject.cpp ./include/roomObject.h)
 
@@ -20,19 +32,18 @@ add_library(room ./src/room.cpp ./include/room.h)
 
 add_library(passage ./src/passage.cpp ./include/passage.h)
 
+add_library(player ./src/player.cpp ./include/player.h)
+target_link_libraries(player PUBLIC inventory room)
+
+
+
 target_link_libraries(passage PUBLIC room)
 target_link_libraries(room PUBLIC passage)
 
 add_library(dinamicPropertyType ./src/dinamicProperty/dinamicPropertyType.cpp ./include/dinamicProperty/dinamicPropertyType.h)
 add_library(dinamicProperty ./src/dinamicProperty/dinamicProperty.cpp ./include/dinamicProperty/dinamicProperty.h)
 
-add_library(itemType ./src/itemType.cpp ./include/itemType.h)
 
-add_library(itemStack ./src/itemStack.cpp ./include/itemStack.h)
-target_link_libraries(itemStack PUBLIC itemType)
-
-add_library(inventory ./src/inventory.cpp ./include/inventory.h)
-target_link_libraries(inventory PUBLIC itemStack)
 
 add_library(condition ./src/condition.cpp ./include/condition.h)
 
