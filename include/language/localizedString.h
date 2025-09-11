@@ -8,11 +8,12 @@
 class LocalizedString
 {
 	std::string value;
-	Language language;
+	Language* language;
 public:
-	LocalizedString(std::string value, Language language);
-	std::string getValue() const;
-	Language getLanguage() const;
+	LocalizedString(std::string value, Language* language);
+	std::string getString() const;
+	Language* getLanguage() const;
+	bool hasSubstring(std::string substring) const; // Проверяет, есть ли в строке подстрока
 };
 
 #endif

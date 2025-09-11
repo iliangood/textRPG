@@ -1,15 +1,19 @@
 #include "player.h"
 
-Player::Player(std::string name, std::string description, Room* position)
-	: name(std::move(name)), description(std::move(description)), position(position)
+Player::Player(MultiLocalizedString* name, MultiLocalizedString* description, Room* position,
+	std::vector<DinamicProperty> dinamicProperties,
+	std::vector<ConstantProperty*> constantProperties)
+	: name(name), description(description), position(position),
+	dinamicProperties(dinamicProperties),
+	constantProperties(constantProperties)
 {}
 
-std::string Player::getName() const
+MultiLocalizedString* Player::getName() const
 {
 	return name;
 }
 
-std::string Player::getDescription() const
+MultiLocalizedString* Player::getDescription() const
 {
 	return description;
 }
@@ -27,4 +31,14 @@ Room* Player::getPosition() const
 void Player::setPosition(Room* newPosition)
 {
 	position = newPosition;
+}
+
+std::vector<DinamicProperty>* Player::getDinamicProperties()
+{
+	return &dinamicProperties;
+}
+
+std::vector<ConstantProperty*>* Player::getConstantProperties()
+{
+	return &constantProperties;
 }

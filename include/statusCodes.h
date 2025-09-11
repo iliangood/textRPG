@@ -15,7 +15,7 @@
 #define GAME_LOGIC_ERROR -5
 #define NOT_EXISTS -6
 #define ALREADY_EXISTS -7
-#define INVALID_STATE -8
+#define INVALID_STATE -8 // Некорректное состояние объекта
 #define PERMISSION_DENIED -9
 #define TIMEOUT -10
 #define OUT_OF_MEMORY -11

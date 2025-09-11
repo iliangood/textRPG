@@ -14,31 +14,31 @@ class Passage;
 
 class Room
 {
-	std::string name;
-	std::string description;
+	MultiLocalizedString* name;
+	MultiLocalizedString* description;
 	std::vector<Passage> passages;
 	std::vector<roomObject> objects;
-	std::vector<dinamicProperty> dinamicProperties;
-	std::vector<ConstantProperty> constantProperties;
+	std::vector<DinamicProperty> dinamicProperties;
+	std::vector<ConstantProperty*> constantProperties;
 
 public:
-	Room(std::string name, std::string description,
+	Room(MultiLocalizedString* name, MultiLocalizedString* description,
 		std::vector<Passage> passages = {},
 		std::vector<roomObject> objects = {},
-		std::vector<dinamicProperty> dinamicProperties = {},
-		std::vector<ConstantProperty> constantProperties = {});
+		std::vector<DinamicProperty> dinamicProperties = {},
+		std::vector<ConstantProperty*> constantProperties = {});
 
-	std::string getName() const; //Получить имя комнаты
+	MultiLocalizedString* getName() const; //Получить имя комнаты
 
-	std::string getDescription() const; //Получить описание комнаты
+	MultiLocalizedString* getDescription() const; //Получить описание комнаты
 
 	std::vector<Passage> getPassages() const; //Получить все выходы из комнаты
 
 	std::vector<roomObject> getObjects() const; //Получить все объекты в комнате
 
-	std::vector<dinamicProperty> getDinamicProperties() const; //Получить все динамические свойства комнаты
+	std::vector<DinamicProperty>* getDinamicProperties(); //Получить все динамические свойства комнаты
 
-	std::vector<ConstantProperty> getConstantProperties() const; //Получить все постоянные свойства комнаты
+	std::vector<ConstantProperty*>* getConstantProperties(); //Получить все постоянные свойства комнаты
 };
 
 #endif

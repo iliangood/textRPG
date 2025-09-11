@@ -7,28 +7,30 @@
 #include "condition.h"
 #include "dinamicProperty/dinamicProperty.h"
 #include "constantProperty.h"
+#include "statusCodes.h"
+#include "language/multiLocalizedString.h"
 
 class roomObject
 {
 private:
-	std::string name;
-	std::string description;
-	std::vector<dinamicProperty> dinamicProperties;
-	std::vector<ConstantProperty> constantProperties;
+	MultiLocalizedString* name;
+	MultiLocalizedString* description;
+	std::vector<DinamicProperty> dinamicProperties;
+	std::vector<ConstantProperty*> constantProperties;
 	Condition* visibilityCondition;
 	void (*interactionFunc)(void* data);
 public:
-	roomObject(std::string name, std::string description,
-		std::vector<dinamicProperty> dinamicProperties = {},
-		std::vector<ConstantProperty> constantProperties = {},
+	roomObject(MultiLocalizedString* name, MultiLocalizedString* description,
+		std::vector<DinamicProperty> dinamicProperties = {},
+		std::vector<ConstantProperty*> constantProperties = {},
 		Condition* visibilityCondition = nullptr,
 		void (*interactionFunc)(void* data) = nullptr);
-	std::string getName() const;
-	std::string getDescription() const;
-	std::vector<dinamicProperty> getDinamicProperties() const;
-	std::vector<ConstantProperty> getConstantProperties() const;
-	bool checkVisibility() const;
-	bool checkVisibility(void* arg) const;
+	MultiLocalizedString* getName() const;
+	MultiLocalizedString* getDescription() const;
+	std::vector<DinamicProperty>* getDinamicProperties();
+	std::vector<ConstantProperty*>* getConstantProperties();
+	std::optional<bool> checkVisibility() const;
+	std::optional<bool> checkVisibility(void* arg) const;
 	void interact(void* data) const;
 	void interact() const;
 

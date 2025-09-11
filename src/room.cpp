@@ -1,23 +1,20 @@
 #include "room.h"
 
-Room::Room(std::string name, std::string description,
+Room::Room(MultiLocalizedString* name, MultiLocalizedString* description,
 	std::vector<Passage> passages,
 	std::vector<roomObject> objects,
-	std::vector<dinamicProperty> dinamicProperties,
-	std::vector<ConstantProperty> constantProperties)
-	: name(std::move(name)), description(std::move(description)),
-	passages(std::move(passages)),
-	objects(std::move(objects)),
-	dinamicProperties(std::move(dinamicProperties)),
-	constantProperties(std::move(constantProperties))
+	std::vector<DinamicProperty> dinamicProperties,
+	std::vector<ConstantProperty*> constantProperties)
+	: name(name), description(description), passages(passages), objects(objects),
+	dinamicProperties(dinamicProperties), constantProperties(constantProperties)
 {}
 
-std::string Room::getName() const
+MultiLocalizedString* Room::getName() const
 {
 	return name;
 }
 
-std::string Room::getDescription() const
+MultiLocalizedString* Room::getDescription() const
 {
 	return description;
 }
@@ -32,12 +29,12 @@ std::vector<roomObject> Room::getObjects() const
 	return objects;
 }
 
-std::vector<dinamicProperty> Room::getDinamicProperties() const
+std::vector<DinamicProperty>* Room::getDinamicProperties()
 {
-	return dinamicProperties;
+	return &dinamicProperties;
 }
 
-std::vector<ConstantProperty> Room::getConstantProperties() const
+std::vector<ConstantProperty*>* Room::getConstantProperties()
 {
-	return constantProperties;
+	return &constantProperties;
 }

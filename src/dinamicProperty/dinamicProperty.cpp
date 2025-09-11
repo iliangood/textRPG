@@ -1,40 +1,40 @@
 #include "dinamicProperty/dinamicProperty.h"
 
-dinamicProperty::dinamicProperty(DinamicPropertyType* type, dinamicPropertyValue value)
+DinamicProperty::DinamicProperty(DinamicPropertyType* type, DinamicPropertyValue value)
 	: type(type), value(value)
 {}
 
-DinamicPropertyType* dinamicProperty::getType() const
+DinamicPropertyType* DinamicProperty::getType() const
 {
 	return type;
 }
 
-std::string dinamicProperty::getName() const
+MultiLocalizedString* DinamicProperty::getName() const
 {
 	return type->getName();
 }
 
-std::string dinamicProperty::getDescription() const
+MultiLocalizedString* DinamicProperty::getDescription() const
 {
 	return type->getDescription();
 }
 
-dinamicPropertyTypeEnum dinamicProperty::getValueType() const
+DinamicPropertyTypeEnum DinamicProperty::getValueType() const
 {
 	return type->getType();
 }
 
-bool dinamicProperty::isHidden() const
+bool DinamicProperty::isHidden() const
 {
 	return type->isHidden();
 }
 
-dinamicPropertyValue dinamicProperty::getValue() const
+DinamicPropertyValue DinamicProperty::getValue() const
 {
 	return value;
 }
 
-void dinamicProperty::setValue(dinamicPropertyValue newValue)
+void DinamicProperty::setValue(DinamicPropertyValue newValue)
 {
 	value = newValue;
 }

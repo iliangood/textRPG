@@ -9,6 +9,8 @@
 #include "statusCodes.h"
 
 #include "items/itemStack.h"
+#include "items/itemType.h"
+#include "language/multiLocalizedString.h"
 
 
 class Inventory
@@ -21,13 +23,15 @@ public:
 
 	bool isExistence(ItemType item);
 
-	std::optional<std::string> getName(size_t index) const; //Получить имя предмета(ов) в определенной ячеке инвентаря
+	std::optional<MultiLocalizedString*> getName(size_t index) const; //Получить имя предмета(ов) в определенной ячеке инвентаря
 
-	std::vector<std::string> getNames() const; //Получить имена всех предметов в инвентаре
+	std::vector<MultiLocalizedString*> getNames() const; //Получить имена всех предметов в инвентаре
 
-	std::optional<std::string> getDescription(size_t index) const; //Получить описание предмета(ов) в определенной ячейке инвентаря
+	std::optional<MultiLocalizedString*> getDescription(size_t index) const; //Получить описание предмета(ов) в определенной ячейке инвентаря
 
 	std::optional<const ItemStack*> getItemStack(size_t index) const; //Получить определенную ячейку инвентаря
+
+	std::optional<ItemStack*> getItemStack(size_t index); //Получить определенную ячейку инвентаря
 
 	std::optional<const ItemType*> getItemType(size_t index) const; //Получить тип предмета в определенной ячейке
 
@@ -39,16 +43,16 @@ public:
 
 	bool isEmpty() const; //Проверит пустой ли инвентарь
 
-	std::optional<size_t> findFirstIndex(ItemType* item) const; //Поиск индекса предмета по предмету
+	std::optional<size_t> findFirstIndex(const ItemType* item) const; //Поиск индекса предмета по предмету
 
-	std::optional<size_t> findFirstIndex(std::string name) const; //Поиск первого индекса предмета по имени предмета
+	std::optional<size_t> findFirstIndex(std::string name) const; //Поиск первого индекса предмета по включению строки в имя предмета
 	
-	std::vector<size_t> findIndexes(std::string name) const; //Поиск всех индексов предмета по имени предмета
+	std::vector<size_t> findIndexes(std::string name) const; //Поиск всех индексов предмета по включению строки в имя предмета
 
-	int push(ItemType* item, size_t count); //Положить предмет(ы) в инвентарь
+	int push(const ItemType* item, size_t count); //Положить предмет(ы) в инвентарь
 
-	int uniquePush(ItemType* item); //Положить предмет если его не существует
+	//int uniquePush(ItemType* item); //Положить предмет если его не существует
 
-	int pull(ItemType* item, size_t count); //Достать предметы из инвентаря
+	int pull(const ItemType* item, size_t count); //Достать предметы из инвентаря
 };
 #endif

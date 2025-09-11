@@ -2,16 +2,17 @@
 #define CONSTANT_PROPERTY_H
 
 #include <string>
+#include "language/multiLocalizedString.h"
 
 
 class ConstantProperty
 {
-	std::string name;
-	std::string description;
+	MultiLocalizedString* name;
+	MultiLocalizedString* description;
 	bool hidden;
 public:
-	std::string getName();
-	std::string getDescription();
+	MultiLocalizedString* getName();
+	MultiLocalizedString* getDescription();
 	bool getHidden();
 };
 #endif

@@ -14,15 +14,22 @@ std::optional<const ItemStack*> Inventory::getItemStack(size_t index) const
 	return &(itemStacks[index]);
 }
 
+std::optional<ItemStack*> Inventory::getItemStack(size_t index)
+{
+	if(index >= itemStacks.size())
+		return std::nullopt;
+	return &(itemStacks[index]);
+}
+
 std::optional<const ItemType*> Inventory::getItemType(size_t index) const
 {
-	std::optional<ItemStack*> itemstack = getItemStack(index);
+	std::optional<const ItemStack*> itemstack = getItemStack(index);
 	if(itemstack == std::nullopt)
 		return std::nullopt;
 	return itemstack.value()->getItem();
 }
 
-std::optional<std::string> Inventory::getName(size_t index) const
+std::optional<MultiLocalizedString*> Inventory::getName(size_t index) const
 {
 	std::optional<const ItemStack*> itemstack = getItemStack(index);
 	if(itemstack == std::nullopt)
@@ -30,7 +37,7 @@ std::optional<std::string> Inventory::getName(size_t index) const
 	return itemstack.value()->getName();
 }
 
-std::optional<std::string> Inventory::getDescription(size_t index) const
+std::optional<MultiLocalizedString*> Inventory::getDescription(size_t index) const
 {
 	std::optional<const ItemStack*> itemstack = getItemStack(index);
 	if(itemstack == std::nullopt)
@@ -40,9 +47,9 @@ std::optional<std::string> Inventory::getDescription(size_t index) const
 	return getItemStack(index).value()->getDescription();
 }
 
-std::vector<std::string> Inventory::getNames() const
+std::vector<MultiLocalizedString*> Inventory::getNames() const
 {
-	std::vector<std::string> res;
+	std::vector<MultiLocalizedString*> res;
 	int size = getCount();
 	res.resize(size);
 	for(int i = 0; i < size; i++)
@@ -78,9 +85,9 @@ bool Inventory::isEmpty() const
 	return itemStacks.size();
 }
 
-std::optional<size_t> Inventory::findFirstIndex(ItemType* item) const
+std::optional<size_t> Inventory::findFirstIndex(const ItemType* item) const
 {
-	for(int i = 0; i < getCount(); i++)
+	for(size_t i = 0; i < getCount(); i++)
 	{
 		if(getItemType(i) == item)
 		{
@@ -92,9 +99,9 @@ std::optional<size_t> Inventory::findFirstIndex(ItemType* item) const
 
 std::optional<size_t> Inventory::findFirstIndex(std::string name) const
 {
-	for(int i = 0; i < getCount(); i++)
+	for(size_t i = 0; i < getCount(); i++)
 	{
-		if(getName(i) == name)
+		if(getName(i).value()->hasSubstring(name))
 		{
 			return i;
 		}
@@ -102,46 +109,51 @@ std::optional<size_t> Inventory::findFirstIndex(std::string name) const
 	return std::nullopt;
 }
 
-int Inventory::push(ItemType* item, size_t count)
+int Inventory::push(const ItemType* item, size_t count)
 {
-	if(count < 0)
-	{
-		return INCORRECT_INPUT;
-	}
 	std::optional<size_t> index = findFirstIndex(item);
 	if(index != std::nullopt)
 	{
-		getItemStack(index.value()).value().push(item, count);
+		getItemStack(index.value()).value()->push(item, count);
 		return OK;
 	}
 	itemStacks.push_back(ItemStack(item, count));
 	return OK;
 }
 
-int Inventory::uniquePush(ItemType* item)
+/*int Inventory::uniquePush(ItemType* item)
 {
-	if(findIndex(item) == NOT_EXISTS)
+	if(findIndex(item).has_value())
+	{
+		return ALREADY_EXISTS;
+	}
 	{
 		push(item, 1);
 		return OK;
 	}
 	return GAME_LOGIC_ERROR;
-}
+}*/
 
-int Inventory::pull(ItemType* item, int count)
+int Inventory::pull(const ItemType* item, size_t count)
 {
-	if(count < 0)
+	std::optional<size_t> index = findFirstIndex(item);
+	if(!index.has_value())
 	{
 		return INCORRECT_INPUT;
 	}
-	int index = findIndex(item);
-	if(index < 0)
+	std::optional<size_t> Count = getCount(index.value());
+	if(Count == std::nullopt)
 	{
 		return GAME_LOGIC_ERROR;
 	}
-	if(getCount(index) < count)
+	if(Count.value() < count)
 	{
 		return GAME_LOGIC_ERROR;
 	}
-	return getItemStack(index).pull(count);
+	std::optional<ItemStack*> itemStack = getItemStack(index.value());
+	if(itemStack == std::nullopt)
+	{
+		return GAME_LOGIC_ERROR;
+	}
+	return itemStack.value()->pull(count);
 }

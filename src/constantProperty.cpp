@@ -1,11 +1,11 @@
 #include "constantProperty.h"
 
-std::string ConstantProperty::getName()
+MultiLocalizedString* ConstantProperty::getName()
 {
     return name;
 }
 
-std::string ConstantProperty::getDescription()
+MultiLocalizedString* ConstantProperty::getDescription()
 {
     return description;
 }

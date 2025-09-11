@@ -1,27 +1,27 @@
 #include "items/itemStack.h"
 
-ItemStack::ItemStack(ItemType *item, int count)
+ItemStack::ItemStack(const ItemType *item, int count)
 {
 	this->item = item;
 	this->count = count;
 }
 
-std::string ItemStack::getName() const
+MultiLocalizedString* ItemStack::getName() const
 {
 	return item->getName();
 }
 
-std::string ItemStack::getDescription() const
+MultiLocalizedString* ItemStack::getDescription() const
 {
 	return item->getDescription();
 }
 
-ItemType* ItemStack::getItem() const
+const ItemType* ItemStack::getItem() const
 {
 	return item;
 }
 
-int ItemStack::getCount() const
+size_t ItemStack::getCount() const
 {
 	return count;
 }
@@ -38,7 +38,7 @@ int ItemStack::push(size_t Count)
 }
 
 
-int ItemStack::push(ItemType* item, size_t Count)
+int ItemStack::push(const ItemType* item, size_t Count)
 {
 	if(this->item != item)
 	{
@@ -47,19 +47,19 @@ int ItemStack::push(ItemType* item, size_t Count)
 	return push(Count);
 }
 
-int ItemStack::pull(size_t Count)
+int ItemStack::pull(size_t count)
 {
-	if(count < Count)
+	if(this->count < count)
 		return GAME_LOGIC_ERROR;
-	count -= count;
+	this->count -= count;
 	return OK;
 }
 
-int ItemStack::pull(ItemType* item, size_t Count)
+int ItemStack::pull(const ItemType* item, size_t count)
 {
 	if(this->item != item)
 	{
 		return GAME_LOGIC_ERROR;
 	}
-	return pull(Count);
+	return pull(count);
 }

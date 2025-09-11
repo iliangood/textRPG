@@ -2,8 +2,9 @@
 #define DINAMIC_PROPERTY_TYPE_H
 
 #include <string>
+#include "language/multiLocalizedString.h"
 
-enum class dinamicPropertyTypeEnum
+enum class DinamicPropertyTypeEnum
 {
 	INT,
 	STRING,
@@ -13,15 +14,15 @@ enum class dinamicPropertyTypeEnum
 class DinamicPropertyType
 {
 private:
-	std::string name;
-	std::string description;
-	dinamicPropertyTypeEnum type;
+	MultiLocalizedString* name;
+	MultiLocalizedString* description;
+	DinamicPropertyTypeEnum type;
 	bool hidden;
 public:
-	DinamicPropertyType(std::string name, std::string description, dinamicPropertyTypeEnum type, bool hidden = false);
-	std::string getName() const;
-	std::string getDescription() const;
-	dinamicPropertyTypeEnum getType() const;
+	DinamicPropertyType(MultiLocalizedString* name, MultiLocalizedString* description, DinamicPropertyTypeEnum type, bool hidden = false);
+	MultiLocalizedString* getName() const;
+	MultiLocalizedString* getDescription() const;
+	DinamicPropertyTypeEnum getType() const;
 	bool isHidden() const;
 };
 

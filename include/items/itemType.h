@@ -9,22 +9,23 @@
 #include "constantProperty.h"
 #include "dinamicProperty/dinamicProperty.h"
 #include "dinamicProperty/dinamicPropertyType.h"
+#include "language/multiLocalizedString.h"
 
 
 class ItemType
 {
-	std::string name;
-	std::string description;
+	MultiLocalizedString* name;
+	MultiLocalizedString* description;
 	std::vector<ConstantProperty*> properties;
 	std::optional<std::vector<DinamicPropertyType*>> dinamicProperties;
 	bool uniqueItem; //Должен ли быть предмет уникальным
 public:
-	ItemType(std::string name, std::string description, std::vector<ConstantProperty*> properties, 
+	ItemType(MultiLocalizedString* name, MultiLocalizedString* description, std::vector<ConstantProperty*> properties, 
 		std::optional<std::vector<DinamicPropertyType*>> dinamicProperties = std::nullopt, bool uniqueItem = false);
 
-	std::string getDescription() const; //Получить описание предмета
+	MultiLocalizedString* getDescription() const; //Получить описание предмета
 
-	std::string getName() const; //Получить имя предмета
+	MultiLocalizedString* getName() const; //Получить имя предмета
 
 	bool isUnique() const; // Узнать должен ли предмет быть уникальным
 

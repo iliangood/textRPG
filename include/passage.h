@@ -9,19 +9,20 @@ class Room;
 
 #include "room.h"
 #include "condition.h"
-
-using namespace std;
+#include "language/multiLocalizedString.h"
 
 class Passage
 {
 	const Room* target;
-	string description;
+	MultiLocalizedString* name;
+	MultiLocalizedString* description;
 	const Condition* CheckVisibility;
 	const Condition* CheckAccessibility;
 public:
 	Passage(){}
-	Passage(const Room* target, string description, const Condition* CheckVisibility);
-	string getDescription() const;
+	Passage(const Room* target, MultiLocalizedString* description, const Condition* CheckVisibility);
+	MultiLocalizedString* getDescription() const;
+	MultiLocalizedString* getName() const;
 	bool checkVisibility() const;
 	bool checkVisibility(void* arg) const;
 	const Room* getTarget() const;

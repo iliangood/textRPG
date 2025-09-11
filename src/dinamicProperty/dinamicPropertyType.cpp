@@ -1,20 +1,20 @@
 #include "dinamicProperty/dinamicPropertyType.h"
 
-DinamicPropertyType::DinamicPropertyType(std::string name, std::string description, dinamicPropertyTypeEnum type, bool hidden)
+DinamicPropertyType::DinamicPropertyType(MultiLocalizedString* name, MultiLocalizedString* description, DinamicPropertyTypeEnum type, bool hidden)
 	: name(std::move(name)), description(std::move(description)), type(type), hidden(hidden)
 {}
 
-std::string DinamicPropertyType::getName() const
+MultiLocalizedString* DinamicPropertyType::getName() const
 {
 	return name;
 }
 
-std::string DinamicPropertyType::getDescription() const
+MultiLocalizedString* DinamicPropertyType::getDescription() const
 {
 	return description;
 }
 
-dinamicPropertyTypeEnum DinamicPropertyType::getType() const
+DinamicPropertyTypeEnum DinamicPropertyType::getType() const
 {
 	return type;
 }

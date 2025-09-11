@@ -3,9 +3,9 @@
 
 #include "player.h"
 #include "room.h"
-#include "inventory.h"
-#include "itemType.h"
-#include "itemStack.h"
+#include "items/inventory.h"
+#include "items/itemType.h"
+#include "items/itemStack.h"
 #include "constantProperty.h"
 #include "dinamicProperty/dinamicProperty.h"
 #include "condition.h"

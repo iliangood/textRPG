@@ -5,27 +5,39 @@
 #include <vector>
 
 #include "statusCodes.h"
-#include "inventory.h"
+
+#include "dinamicProperty/dinamicProperty.h"
+#include "constantProperty.h"
+#include "items/inventory.h"
 #include "room.h"
+#include "language/multiLocalizedString.h"
 
 
 class Player
 {
-	std::string name;
-	std::string description;
-	Inventory inventory;
+	MultiLocalizedString* name;
+	MultiLocalizedString* description;
 	Room* position;
+	std::vector<DinamicProperty> dinamicProperties;
+	std::vector<ConstantProperty*> constantProperties;
+	Inventory inventory;
 public:
-	Player(std::string name, std::string description, Room* position);
+	Player(MultiLocalizedString* name, MultiLocalizedString* description, Room* position,
+		std::vector<DinamicProperty> dinamicProperties = {},
+		std::vector<ConstantProperty*> constantProperties = {});
 
-	std::string getName() const; //Получить имя игрока
+	MultiLocalizedString* getName() const; //Получить имя игрока
 
-	std::string getDescription() const; //Получить описание игрока
+	MultiLocalizedString* getDescription() const; //Получить описание игрока
 
 	Inventory& getInventory(); //Получить инвентарь игрока
 
 	Room* getPosition() const; //Получить текущую позицию игрока
 
 	void setPosition(Room* newPosition); //Установить новую позицию игрока
+
+	std::vector<DinamicProperty>* getDinamicProperties(); //Получить все динамические свойства игрока
+
+	std::vector<ConstantProperty*>* getConstantProperties(); //Получить все постоянные свойства игрока
 };
 #endif

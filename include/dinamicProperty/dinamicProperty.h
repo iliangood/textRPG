@@ -6,23 +6,24 @@
 #include <variant>
 
 #include "dinamicProperty/dinamicPropertyType.h"
+#include "language/multiLocalizedString.h"
 
-typedef std::variant<int, std::string, std::vector<char>> dinamicPropertyValue;
+typedef std::variant<int, std::string, std::vector<char>> DinamicPropertyValue;
 
-class dinamicProperty
+class DinamicProperty
 {
 private:
 	DinamicPropertyType* type;
-	dinamicPropertyValue value;
+	DinamicPropertyValue value;
 public:
-	dinamicProperty(DinamicPropertyType* type, dinamicPropertyValue value);
+	DinamicProperty(DinamicPropertyType* type, DinamicPropertyValue value);
 	DinamicPropertyType* getType() const;
-	std::string getName() const;
-	std::string getDescription() const;
-	dinamicPropertyTypeEnum getValueType() const;
+	MultiLocalizedString* getName() const;
+	MultiLocalizedString* getDescription() const;
+	DinamicPropertyTypeEnum getValueType() const;
 	bool isHidden() const;
-	dinamicPropertyValue getValue() const;
-	void setValue(dinamicPropertyValue newValue);
+	DinamicPropertyValue getValue() const;
+	void setValue(DinamicPropertyValue newValue);
 };
 
 

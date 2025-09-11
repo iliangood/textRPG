@@ -1,50 +1,46 @@
 #include "roomObject.h"
 
-
-
-roomObject::roomObject(std::string name, std::string description,
-	std::vector<dinamicProperty> dinamicProperties,
-	std::vector<ConstantProperty> constantProperties,
+roomObject::roomObject(MultiLocalizedString* name, MultiLocalizedString* description,
+	std::vector<DinamicProperty> dinamicProperties,
+	std::vector<ConstantProperty*> constantProperties,
 	Condition* visibilityCondition,
 	void (*interactionFunc)(void* data))
-	: name(std::move(name)), description(std::move(description)),
-	dinamicProperties(std::move(dinamicProperties)),
-	constantProperties(std::move(constantProperties)),
-	visibilityCondition(visibilityCondition),
-	interactionFunc(interactionFunc)
+	: name(name), description(description), dinamicProperties(dinamicProperties),
+	constantProperties(constantProperties),
+	visibilityCondition(visibilityCondition), interactionFunc(interactionFunc)
 {}
 
-std::string roomObject::getName() const
+MultiLocalizedString* roomObject::getName() const
 {
 	return name;
 }
 
-std::string roomObject::getDescription() const
+MultiLocalizedString* roomObject::getDescription() const
 {
 	return description;
 }
 
-std::vector<dinamicProperty> roomObject::getDinamicProperties() const
+std::vector<DinamicProperty>* roomObject::getDinamicProperties()
 {
-	return dinamicProperties;
+	return &dinamicProperties;
 }
 
-std::vector<ConstantProperty> roomObject::getConstantProperties() const
+std::vector<ConstantProperty*>* roomObject::getConstantProperties()
 {
-	return constantProperties;
+	return &constantProperties;
 }
 
-bool roomObject::checkVisibility() const
+std::optional<bool> roomObject::checkVisibility() const
 {
 	if (visibilityCondition == nullptr)
-		return true;
+		return std::nullopt;
 	return visibilityCondition->check();
 }
 
-bool roomObject::checkVisibility(void* arg) const
+std::optional<bool> roomObject::checkVisibility(void* arg) const
 {
 	if (visibilityCondition == nullptr)
-		return true;
+		return std::nullopt;
 	return visibilityCondition->check(arg);
 }
 

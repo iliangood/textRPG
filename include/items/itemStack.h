@@ -6,23 +6,24 @@
 #include "statusCodes.h"
 
 #include "items/itemType.h"
+#include "language/multiLocalizedString.h"
 
 
 class ItemStack
 {
 	const ItemType* item;
-	int count;
+	size_t count;
 public:
 	ItemStack(){}
-	ItemStack(ItemType *item, int count);
+	ItemStack(const ItemType *item, int count);
 
-	std::string getName() const; //Получить имя предмета в ячейке
+	MultiLocalizedString* getName() const; //Получить имя предмета в ячейке
 
-	std::string getDescription() const; //Получить описание предмета в ячейке
+	MultiLocalizedString* getDescription() const; //Получить описание предмета в ячейке
 
-	ItemType* getItem() const; //Получить объкт предмета
+	const ItemType* getItem() const; //Получить объкт предмета
 
-	int getCount() const; //Получить количество предметов в ячейке
+	size_t getCount() const; //Получить количество предметов в ячейке
 
 	bool isEmpty() const; //Проверить ячейку на то, что она пуста
 

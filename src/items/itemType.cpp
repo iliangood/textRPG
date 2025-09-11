@@ -1,6 +1,6 @@
 #include "items/itemType.h"
 
-ItemType::ItemType(std::string name, std::string description, std::vector<ConstantProperty*> properties, 
+ItemType::ItemType(MultiLocalizedString* name, MultiLocalizedString* description, std::vector<ConstantProperty*> properties, 
 	std::optional<std::vector<DinamicPropertyType*>> dinamicProperties, bool uniqueItem)
 {
 	this->name = name;
@@ -10,12 +10,12 @@ ItemType::ItemType(std::string name, std::string description, std::vector<Consta
 	this->dinamicProperties = dinamicProperties;
 }
 
-std::string ItemType::getDescription() const
+MultiLocalizedString* ItemType::getDescription() const
 {
 	return description;
 }
 
-std::string ItemType::getName() const
+MultiLocalizedString* ItemType::getName() const
 {
 	return name;
 }
@@ -120,7 +120,7 @@ int ItemType::removeDinamicProperty(std::optional<size_t> index)
 
 bool ItemType::checkConstantProperty(ConstantProperty* property) const
 {
-	for(int i = 0; i < properties.size(); i++)
+	for(size_t i = 0; i < properties.size(); i++)
 	{
 		if(properties[i] == property)
 			return true;
@@ -139,7 +139,7 @@ bool ItemType::checkDinamicProperty(DinamicPropertyType* property) const
 {
 	if(!dinamicProperties.has_value())
 		return false;
-	for(int i = 0; i < dinamicProperties.value().size(); i++)
+	for(size_t i = 0; i < dinamicProperties.value().size(); i++)
 	{
 		if(dinamicProperties.value()[i] == property)
 			return true;
