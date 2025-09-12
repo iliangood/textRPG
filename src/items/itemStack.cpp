@@ -47,7 +47,7 @@ StatusCode ItemStack::push(const ItemType* item, size_t Count)
 {
 	if(this->item != item)
 	{
-		return StatusCode::GAME_LOGIC_ERROR;
+		return StatusCode::UNMATCHED_ITEM_TYPE;
 	}
 	return push(Count);
 }
@@ -57,6 +57,8 @@ StatusCode ItemStack::pull(size_t count)
 	if(this->count < count)
 		return StatusCode::GAME_LOGIC_ERROR;
 	this->count -= count;
+	if(this->count == 0)
+		return StatusCode::MUST_BE_REMOVED;
 	return StatusCode::OK;
 }
 

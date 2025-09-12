@@ -26,23 +26,18 @@ enum class StatusCode
 	VALIDATION_ERROR = -14,
 	CONFLICT = -15,
 	UNAVAILABLE = -16,
-	INCORRECT_INPUT = -17
+	INCORRECT_INPUT = -17,
+	UNMATCHED_ITEM_TYPE = -18 // Несовпадающий тип предмета
 };
 
-bool isSuccess(StatusCode code)
-{
-	return code == StatusCode::SUCCESS;
-}
+bool isSuccess(StatusCode code);
 
-bool isError(StatusCode code)
-{
-	return code < StatusCode::SUCCESS;
-}
+bool isError(StatusCode code);
 
-bool isWarning(StatusCode code)
-{
-	return code > StatusCode::SUCCESS;
-}
+bool isWarning(StatusCode code);
+
+bool isNotError(StatusCode code);
+
 
 // Успех
 /*#define SUCCESS 0

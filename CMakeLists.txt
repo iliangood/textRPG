@@ -12,19 +12,21 @@ endif()
 
 include_directories(include)
 
+add_library(statusCodes ./src/statusCodes.cpp ./include/statusCodes.h)
+
 add_library(language ./src/language/language.cpp ./include/language/language.h)
 add_library(localizedString ./src/language/localizedString.cpp ./include/language/localizedString.h)
 target_link_libraries(localizedString PUBLIC language)
 add_library(multiLocalizedString ./src/language/multiLocalizedString.cpp ./include/language/multiLocalizedString.h)
-target_link_libraries(multiLocalizedString PUBLIC localizedString)
+target_link_libraries(multiLocalizedString PUBLIC localizedString statusCodes)
 
 add_library(itemType ./src/items/itemType.cpp ./include/items/itemType.h)
 
 add_library(itemStack ./src/items/itemStack.cpp ./include/items/itemStack.h)
-target_link_libraries(itemStack PUBLIC itemType)
+target_link_libraries(itemStack PUBLIC itemType statusCodes)
 
 add_library(inventory ./src/items/inventory.cpp ./include/items/inventory.h)
-target_link_libraries(inventory PUBLIC itemStack)
+target_link_libraries(inventory PUBLIC itemStack statusCodes)
 
 add_library(roomObject ./src/roomObject.cpp ./include/roomObject.h)
 
@@ -33,7 +35,7 @@ add_library(room ./src/room.cpp ./include/room.h)
 add_library(passage ./src/passage.cpp ./include/passage.h)
 
 add_library(player ./src/player.cpp ./include/player.h)
-target_link_libraries(player PUBLIC inventory room)
+target_link_libraries(player PUBLIC inventory room statusCodes)
 
 
 
@@ -51,4 +53,4 @@ add_library(constantProperty ./src/constantProperty.cpp ./include/constantProper
 
 add_executable(game main.cpp)
 
-target_link_libraries(game PUBLIC player room inventory itemType itemStack constantProperty dinamicProperty dinamicPropertyType condition)
+target_link_libraries(game PUBLIC player room inventory itemType itemStack constantProperty dinamicProperty dinamicPropertyType condition statusCodes)
