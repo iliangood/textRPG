@@ -107,37 +107,37 @@ std::optional<size_t> MultiLocalizedString::findLocalization(Language* language)
 	return std::nullopt;
 }
 
-int MultiLocalizedString::addLocalization(LocalizedString* localization)
+StatusCode MultiLocalizedString::addLocalization(LocalizedString* localization)
 {
 	if(localization == nullptr)
 	{
-		return INCORRECT_INPUT; // Некорректный указатель
+		return StatusCode::INCORRECT_INPUT; // Некорректный указатель
 	}
 	if (hasLanguage(localization->getLanguage()))
 	{
-		return  ALREADY_EXISTS;// Локализация на такой язык уже есть
+		return  StatusCode::ALREADY_EXISTS;// Локализация на такой язык уже есть
 	}
 	values.push_back(localization);
-	return OK;
+	return StatusCode::OK;
 }
 
-int MultiLocalizedString::removeLocalization(size_t index)
+StatusCode MultiLocalizedString::removeLocalization(size_t index)
 {
 	if (index >= values.size())
 	{
-		return NOT_EXISTS; // Индекс вне диапазона
+		return StatusCode::NOT_EXISTS; // Индекс вне диапазона
 	}
 	values.erase(values.begin() + index);
-	return OK;
+	return StatusCode::OK;
 }
 
-int MultiLocalizedString::removeLocalization(Language* language)
+StatusCode MultiLocalizedString::removeLocalization(Language* language)
 {
 	std::optional<size_t> index = findLocalization(language);
 	if (!index.has_value())
 	{
-		return NOT_EXISTS; // Локализация на такой язык не найдена
+		return StatusCode::NOT_EXISTS; // Локализация на такой язык не найдена
 	}
 	values.erase(values.begin() + index.value());
-	return OK;
+	return StatusCode::OK;
 }

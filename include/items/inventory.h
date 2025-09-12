@@ -49,10 +49,10 @@ public:
 	
 	std::vector<size_t> findIndexes(std::string name) const; //Поиск всех индексов предмета по включению строки в имя предмета
 
-	int push(const ItemType* item, size_t count); //Положить предмет(ы) в инвентарь
+	StatusCode push(const ItemType* item, size_t count); //Положить предмет(ы) в инвентарь
 
 	//int uniquePush(ItemType* item); //Положить предмет если его не существует
 
-	int pull(const ItemType* item, size_t count); //Достать предметы из инвентаря
+	StatusCode pull(const ItemType* item, size_t count); //Достать предметы из инвентаря
 };
 #endif

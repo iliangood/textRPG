@@ -1,5 +1,5 @@
-#if !defined CONDITTION_H
-#define CONDITTION_H
+#if !defined CONDITION_H
+#define CONDITION_H
 
 
 #include <string>

@@ -31,35 +31,40 @@ bool ItemStack::isEmpty() const
 	return !count;
 }
 
-int ItemStack::push(size_t Count)
+StatusCode ItemStack::push(size_t Count)
 {
+	if(item->hasDinamicProperties())
+	{
+		if(Count + count > 1)
+			return StatusCode::GAME_LOGIC_ERROR;
+	}
 	count += Count;
-	return OK;
+	return StatusCode::OK;
 }
 
 
-int ItemStack::push(const ItemType* item, size_t Count)
+StatusCode ItemStack::push(const ItemType* item, size_t Count)
 {
 	if(this->item != item)
 	{
-		return GAME_LOGIC_ERROR;
+		return StatusCode::GAME_LOGIC_ERROR;
 	}
 	return push(Count);
 }
 
-int ItemStack::pull(size_t count)
+StatusCode ItemStack::pull(size_t count)
 {
 	if(this->count < count)
-		return GAME_LOGIC_ERROR;
+		return StatusCode::GAME_LOGIC_ERROR;
 	this->count -= count;
-	return OK;
+	return StatusCode::OK;
 }
 
-int ItemStack::pull(const ItemType* item, size_t count)
+StatusCode ItemStack::pull(const ItemType* item, size_t count)
 {
 	if(this->item != item)
 	{
-		return GAME_LOGIC_ERROR;
+		return StatusCode::GAME_LOGIC_ERROR;
 	}
 	return pull(count);
 }

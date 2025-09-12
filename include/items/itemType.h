@@ -18,16 +18,15 @@ class ItemType
 	MultiLocalizedString* description;
 	std::vector<ConstantProperty*> properties;
 	std::optional<std::vector<DinamicPropertyType*>> dinamicProperties;
-	bool uniqueItem; //Должен ли быть предмет уникальным
 public:
-	ItemType(MultiLocalizedString* name, MultiLocalizedString* description, std::vector<ConstantProperty*> properties, 
-		std::optional<std::vector<DinamicPropertyType*>> dinamicProperties = std::nullopt, bool uniqueItem = false);
+	ItemType(MultiLocalizedString* name, MultiLocalizedString* description, std::vector<ConstantProperty*> properties = {}, 
+		std::optional<std::vector<DinamicPropertyType*>> dinamicProperties = std::nullopt);
 
 	MultiLocalizedString* getDescription() const; //Получить описание предмета
 
 	MultiLocalizedString* getName() const; //Получить имя предмета
 
-	bool isUnique() const; // Узнать должен ли предмет быть уникальным
+	bool hasDinamicProperties() const; // Проверить есть ли у предмета динамические свойства
 
 	std::vector<ConstantProperty*> getConstantProperties();// Получить свойства предмета
 
@@ -39,17 +38,17 @@ public:
 	std::optional<DinamicPropertyType*> getDinamicProperty(size_t index); // Получить динамическое свойство предмета по индексу
 	std::optional<DinamicPropertyType*> getDinamicProperty(std::optional<size_t> index);
 
-	int addConstantProperty(ConstantProperty* property); // Добавить свойство предмету
-	int addConstantProperty(std::optional<ConstantProperty*> property);
+	StatusCode addConstantProperty(ConstantProperty* property); // Добавить свойство предмету
+	StatusCode addConstantProperty(std::optional<ConstantProperty*> property);
 
-	int removeConstantProperty(size_t index); // Убрать свойство предмета по индексу
-	int removeConstantProperty(std::optional<size_t> index);
+	StatusCode removeConstantProperty(size_t index); // Убрать свойство предмета по индексу
+	StatusCode removeConstantProperty(std::optional<size_t> index);
 
-	int addDinamicProperty(DinamicPropertyType* property); // Добавить динамическое свойство предмету
-	int addDinamicProperty(std::optional<DinamicPropertyType*> property);
+	StatusCode addDinamicProperty(DinamicPropertyType* property); // Добавить динамическое свойство предмету
+	StatusCode addDinamicProperty(std::optional<DinamicPropertyType*> property);
 
-	int removeDinamicProperty(size_t index); // Убрать динамическое свойство предмета по индексу
-	int removeDinamicProperty(std::optional<size_t> index);
+	StatusCode removeDinamicProperty(size_t index); // Убрать динамическое свойство предмета по индексу
+	StatusCode removeDinamicProperty(std::optional<size_t> index);
 
 	bool checkConstantProperty(ConstantProperty* property) const; // Проверить есть ли у предмета такое свойство
 	bool checkConstantProperty(std::optional<ConstantProperty*> property) const;

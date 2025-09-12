@@ -109,16 +109,16 @@ std::optional<size_t> Inventory::findFirstIndex(std::string name) const
 	return std::nullopt;
 }
 
-int Inventory::push(const ItemType* item, size_t count)
+StatusCode Inventory::push(const ItemType* item, size_t count)
 {
 	std::optional<size_t> index = findFirstIndex(item);
 	if(index != std::nullopt)
 	{
 		getItemStack(index.value()).value()->push(item, count);
-		return OK;
+		return StatusCode::OK;
 	}
 	itemStacks.push_back(ItemStack(item, count));
-	return OK;
+	return StatusCode::OK;
 }
 
 /*int Inventory::uniquePush(ItemType* item)
@@ -134,26 +134,26 @@ int Inventory::push(const ItemType* item, size_t count)
 	return GAME_LOGIC_ERROR;
 }*/
 
-int Inventory::pull(const ItemType* item, size_t count)
+StatusCode Inventory::pull(const ItemType* item, size_t count)
 {
 	std::optional<size_t> index = findFirstIndex(item);
 	if(!index.has_value())
 	{
-		return INCORRECT_INPUT;
+		return StatusCode::INCORRECT_INPUT;
 	}
 	std::optional<size_t> Count = getCount(index.value());
 	if(Count == std::nullopt)
 	{
-		return GAME_LOGIC_ERROR;
+		return StatusCode::GAME_LOGIC_ERROR;
 	}
 	if(Count.value() < count)
 	{
-		return GAME_LOGIC_ERROR;
+		return StatusCode::GAME_LOGIC_ERROR;
 	}
 	std::optional<ItemStack*> itemStack = getItemStack(index.value());
 	if(itemStack == std::nullopt)
 	{
-		return GAME_LOGIC_ERROR;
+		return StatusCode::GAME_LOGIC_ERROR;
 	}
 	return itemStack.value()->pull(count);
 }

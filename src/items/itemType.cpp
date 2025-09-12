@@ -1,12 +1,11 @@
 #include "items/itemType.h"
 
 ItemType::ItemType(MultiLocalizedString* name, MultiLocalizedString* description, std::vector<ConstantProperty*> properties, 
-	std::optional<std::vector<DinamicPropertyType*>> dinamicProperties, bool uniqueItem)
+	std::optional<std::vector<DinamicPropertyType*>> dinamicProperties)
 {
 	this->name = name;
 	this->description = description;
 	this->properties = properties;
-	this->uniqueItem = uniqueItem;
 	this->dinamicProperties = dinamicProperties;
 }
 
@@ -41,39 +40,39 @@ std::optional<ConstantProperty*> ItemType::getConstantProperty(std::optional<siz
 	return getConstantProperty(index.value());
 }
 
-bool ItemType::isUnique() const
+bool ItemType::hasDinamicProperties() const
 {
-	return uniqueItem;
+	return dinamicProperties.has_value();
 }
 
-int ItemType::addConstantProperty(ConstantProperty* property)
+StatusCode ItemType::addConstantProperty(ConstantProperty* property)
 {
 	
 	properties.push_back(property);
-	return OK;
+	return StatusCode::OK;
 }
 
-int ItemType::addConstantProperty(std::optional<ConstantProperty*> property)
+StatusCode ItemType::addConstantProperty(std::optional<ConstantProperty*> property)
 {
 	if(!property.has_value())
-		return INCORRECT_INPUT;
+		return StatusCode::INCORRECT_INPUT;
 	return addConstantProperty(property.value());
 }
 
-int ItemType::removeConstantProperty(size_t index)
+StatusCode ItemType::removeConstantProperty(size_t index)
 {
 	if(index >= (properties.size()))
 	{
-		return INCORRECT_INPUT;
+		return StatusCode::INCORRECT_INPUT;
 	}
 	properties.erase(properties.begin() + index);
-	return OK;
+	return StatusCode::OK;
 }
 
-int ItemType::removeConstantProperty(std::optional<size_t> index)
+StatusCode ItemType::removeConstantProperty(std::optional<size_t> index)
 {
 	if(!index.has_value())
-		return INCORRECT_INPUT;
+		return StatusCode::INCORRECT_INPUT;
 	return removeConstantProperty(index.value());
 }
 
@@ -82,39 +81,39 @@ std::optional<std::vector<DinamicPropertyType*>> ItemType::getDinamicProperties(
 	return dinamicProperties;
 }
 
-int ItemType::addDinamicProperty(DinamicPropertyType* property)
+StatusCode ItemType::addDinamicProperty(DinamicPropertyType* property)
 {
 	if(!dinamicProperties.has_value())
 	{
 		dinamicProperties = std::vector<DinamicPropertyType*>();
 	}
 	dinamicProperties.value().push_back(property);
-	return OK;
+	return StatusCode::OK;
 }
 
-int ItemType::addDinamicProperty(std::optional<DinamicPropertyType*> property)
+StatusCode ItemType::addDinamicProperty(std::optional<DinamicPropertyType*> property)
 {
 	if(!property.has_value())
-		return INCORRECT_INPUT;
+		return StatusCode::INCORRECT_INPUT;
 	return addDinamicProperty(property.value());
 }
 
-int ItemType::removeDinamicProperty(size_t index)
+StatusCode ItemType::removeDinamicProperty(size_t index)
 {
 	if(!dinamicProperties.has_value())
-	return NOT_EXISTS;
+	return StatusCode::NOT_EXISTS;
 	if(index >= dinamicProperties.value().size())
 	{
-		return INCORRECT_INPUT;
+		return StatusCode::INCORRECT_INPUT;
 	}
 	dinamicProperties.value().erase(dinamicProperties.value().begin() + index);
-	return OK;
+	return StatusCode::OK;
 }
 
-int ItemType::removeDinamicProperty(std::optional<size_t> index)
+StatusCode ItemType::removeDinamicProperty(std::optional<size_t> index)
 {
 	if(!index.has_value())
-		return INCORRECT_INPUT;
+		return StatusCode::INCORRECT_INPUT;
 	return removeDinamicProperty(index.value());
 }
 

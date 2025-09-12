@@ -5,6 +5,8 @@
 #include <string>
 #include <optional>
 
+#include "statusCodes.h"
+
 #include "language/localizedString.h"
 #include "language/language.h"
 
@@ -34,19 +36,19 @@ public:
 
 	std::optional<size_t> findLocalization(Language* language) const; // Найти индекс локализации по языку
 
-	int addLocalization(LocalizedString* localization); // Добавить локализацию
+	StatusCode addLocalization(LocalizedString* localization); // Добавить локализацию
 
-	int removeLocalization(size_t index); // Удалить локализацию по индексу
+	StatusCode removeLocalization(size_t index); // Удалить локализацию по индексу
 
-	int removeLocalization(Language* language); // Удалить локализацию по языку
+	StatusCode removeLocalization(Language* language); // Удалить локализацию по языку
 
-	int readFile(std::ifstream& file); // Получить из файла TODO:
+	StatusCode readFile(std::ifstream& file); // Получить из файла TODO:
 
-	int writeFile(std::ofstream& file) const; // Записать в файл TODO:
+	StatusCode writeFile(std::ofstream& file) const; // Записать в файл TODO:
 
-	int readFile(FILE* file); // Получить из файла TODO:
+	StatusCode readFile(FILE* file); // Получить из файла TODO:
 
-	int writeFile(FILE* file) const; // Записать в файл TODO:
+	StatusCode writeFile(FILE* file) const; // Записать в файл TODO:
 };
 
 #endif
